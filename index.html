@@ -1,0 +1,162 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>YeSQL specifications &#8212; YeSQL documentation</title>
+    <link rel="stylesheet" href="classic.css" type="text/css" />
+    <link rel="stylesheet" href="pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="underscore.js"></script>
+    <script type="text/javascript" src="doctools.js"></script>
+    <script type="text/javascript" src="jsMath/easy/load.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installing YeSQL" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="nav-item nav-item-0"><a href="#">YeSQL specifications</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="YeSQL-documentation">
+<h1>YeSQL specifications<a class="headerlink" href="#YeSQL-documentation" title="Permalink to this headline">¶</a></h1>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><dl class="first last docutils">
+<dt>” Making the simple complicated is commonplace;</dt>
+<dd>making the complicated simple, awesomely simple…
+that’s creativity" -- Charles Mingus.</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="centered">
+<strong>YeSQL</strong></p><p><strong>YeSQL</strong> is an SQL extension that provides more usable, more expressive, and more perfomant Python UDFs and can be integrated into both server based and embedded DBMSs. It enriches SQL with a functional syntax that unifies the expression of relational and user-defined functionality and optimizes the execution of both in a seamless fashion, assigning processing tasks to the DBMS or the UDF host language VM accordingly and employing efficient low-level implementation techniques.</p>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Detailed specifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#functions">Functions</a><ul>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#multisets">Multisets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#workflows">Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#designing-and-building-a-data-processing-system-with-YeSQL">Designing and building a data processing system with YeSQL</a></li>
+</ul>
+</li>
+
+<li class="toctree-l1"><a class="reference internal" href="row.html">Scalar functions list</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.boolean"><code class="docutils literal"><span class="pre">boolean</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.date"><code class="docutils literal"><span class="pre">date</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.evals"><code class="docutils literal"><span class="pre">evals</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.fileops"><code class="docutils literal"><span class="pre">fileops</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.formating"><code class="docutils literal"><span class="pre">formating</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.htmlops"><code class="docutils literal"><span class="pre">htmlops</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.iptools"><code class="docutils literal"><span class="pre">iptools</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.jpacks"><code class="docutils literal"><span class="pre">jpacks</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.langtools"><code class="docutils literal"><span class="pre">langtools</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.logparse"><code class="docutils literal"><span class="pre">logparse</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.mathops"><code class="docutils literal"><span class="pre">mathops</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.settings"><code class="docutils literal"><span class="pre">settings</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.similarity"><code class="docutils literal"><span class="pre">similarity</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.stopwords"><code class="docutils literal"><span class="pre">stopwords</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.stringdist"><code class="docutils literal"><span class="pre">stringdist</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.termsetops"><code class="docutils literal"><span class="pre">termsetops</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.text"><code class="docutils literal"><span class="pre">text</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.tzconverter"><code class="docutils literal"><span class="pre">tzconverter</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.util"><code class="docutils literal"><span class="pre">util</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="row.html#module-functions.row.variables"><code class="docutils literal"><span class="pre">variables</span></code> functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aggregate.html">Aggregate functions list</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.date"><code class="docutils literal"><span class="pre">date</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.graph"><code class="docutils literal"><span class="pre">graph</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.jpacks"><code class="docutils literal"><span class="pre">jpacks</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.mining"><code class="docutils literal"><span class="pre">mining</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.partialsort"><code class="docutils literal"><span class="pre">partialsort</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.selection"><code class="docutils literal"><span class="pre">selection</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.skcluster"><code class="docutils literal"><span class="pre">skcluster</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.skdimred"><code class="docutils literal"><span class="pre">skdimred</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.statistics"><code class="docutils literal"><span class="pre">statistics</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.subgroup"><code class="docutils literal"><span class="pre">subgroup</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.text"><code class="docutils literal"><span class="pre">text</span></code> functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aggregate.html#module-functions.aggregate.util"><code class="docutils literal"><span class="pre">util</span></code> functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ptable.html">Polymorphic table functions list</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.clipboard"><code class="docutils literal"><span class="pre">clipboard</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.clipout"><code class="docutils literal"><span class="pre">clipout</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.coltypes"><code class="docutils literal"><span class="pre">coltypes</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.dirfiles"><code class="docutils literal"><span class="pre">dirfiles</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.exec"><code class="docutils literal"><span class="pre">exec</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.file"><code class="docutils literal"><span class="pre">file</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.flow"><code class="docutils literal"><span class="pre">flow</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.fromeav"><code class="docutils literal"><span class="pre">fromeav</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.jsonpipe"><code class="docutils literal"><span class="pre">jsonpipe</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.mysql"><code class="docutils literal"><span class="pre">mysql</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.oaiget"><code class="docutils literal"><span class="pre">oaiget</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.oracle"><code class="docutils literal"><span class="pre">oracle</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.output"><code class="docutils literal"><span class="pre">output</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.pipe"><code class="docutils literal"><span class="pre">pipe</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.postgres"><code class="docutils literal"><span class="pre">postgres</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.range"><code class="docutils literal"><span class="pre">range</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.rowidvt"><code class="docutils literal"><span class="pre">rowidvt</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.sample"><code class="docutils literal"><span class="pre">sample</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.skpredict"><code class="docutils literal"><span class="pre">skpredict</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.slidingwindow"><code class="docutils literal"><span class="pre">slidingwindow</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.sqlite"><code class="docutils literal"><span class="pre">sqlite</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.stdinput"><code class="docutils literal"><span class="pre">stdinput</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.timeslidingwindow"><code class="docutils literal"><span class="pre">timeslidingwindow</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.toeav"><code class="docutils literal"><span class="pre">toeav</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.variables"><code class="docutils literal"><span class="pre">variables</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.webtable"><code class="docutils literal"><span class="pre">webtable</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.whilevt"><code class="docutils literal"><span class="pre">whilevt</span></code> function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ptable.html#module-functions.ptable.xmlparse"><code class="docutils literal"><span class="pre">xmlparse</span></code> function</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            
+  <h3><a href="#">YeSQL specifications</a></h3>
+
+
+ 
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    
+  </body>
+</html>

@@ -33,8 +33,10 @@ This script contains the list of commands to install monetdb and other python an
 run end-to-end experiments with 
 
 ```
-python3 YeSQL_MonetDB/monetdb.py -d fldb -H localhost -P 50000 -u monetdb -p monetdb
-``` 
+./monetdb_release/bin/mclient -d fldb -p 50000 -t performance
+
+```
+
 
 Paste query at `sql_queries/flights.sql` in the terminal.
 Paste query at `sql_queries/zillow.sql` in the terminal.
@@ -43,6 +45,12 @@ The terminal also executes any other queries using the MonetDB's SQL dialect.
 Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` and `udfs/zillow.py` in isolation to run microbenchmarks with YeSQL's implementation on MonetDB.
 Also, the user can disable default monetdb's multithreading with `set optimizer='sequential_pipe';` in the terminal.
 This is a specific monetdb command. 
+
+Note also that with:
+```
+python3 YeSQL_MonetDB/monetdb.py -d fldb -H localhost -P 50000 -u monetdb -p monetdb
+``` 
+The YeSQL's terminal with its language extensions (syntactic inversion) can be used with MonetDB. 
 
 ## Installation with SQLite
 

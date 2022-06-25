@@ -28,7 +28,7 @@ Clone the current repository and run
 ```
 This script contains the list of commands to install monetdb and other python and system dependencies, the commands to load the UDFs and data in MonetDB. 
 
-### Flights experiment
+### Experiment
 
 run flights experiment with 
 
@@ -37,9 +37,10 @@ python3 YeSQL_MonetDB/monetdb.py -d fldb -H localhost -P 50000 -u monetdb -p mon
 ``` 
 
 Paste query at `sql_queries/flights.sql` in the terminal.
+Paste query at `sql_queries/zillow.sql` in the terminal.
 
 The terminal also executes any other queries using the MonetDB's SQL dialect. 
-Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` in isolation.
+Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` and `udfs/zillow.py` in isolation to run microbenchmarks.
 Also, the user can disable default monetdb's multithreading with `set optimizer='sequential_pipe';` in the terminal.
 This is a specific monetdb command. 
 
@@ -50,14 +51,15 @@ Load the data with
 pypy2.7-v7.3.6-linux64/bin/pypy YeSQLite/mterm.py -f udfs -d data.db  < data/loaddata_sqlite.sql
 ```
 
-run flights experiment with
+run end-to-end experiments with
 ```
 pypy2.7-v7.3.6-linux64/bin/pypy YeSQLite/mterm.py -f udfs -d data.db
 ```
 Paste query at `sql_queries/flights_sqlite.sql` in the terminal.
+Paste query at `sql_queries/zillow_sqlite.sql` in the terminal.
 
 The terminal also executes any other queries using the SQLite's SQL dialect.
-Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` in isolation.
+Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` and `udfs/zillow.py` in isolation to run microbenchmarks.
 
 ## Notes
 

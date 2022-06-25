@@ -8,3 +8,10 @@ extern int getstate_wrapped(char** input, int size, char** result);
 extern int defunctyear_wrapped(char** input, int size, int* result);
 extern int getairlinename_wrapped(char** input, int size, char** result);
 extern int getairlineyear_wrapped(char** input, int size, int* result);
+extern int extractbd_wrapped(char** input, int size, int* result);
+extern int extracttype_wrapped(char** input, int size, char** result);
+extern int extractpcode_wrapped(char** input, int size, char** result);
+extern int extractba_wrapped(char** input, int size, int* result);
+extern int extractsqfeet_wrapped(char** input, int size, int* result);
+extern int extractprice_sell_wrapped(char** input, int size, int* result);
+

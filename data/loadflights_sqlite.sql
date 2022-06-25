@@ -4,4 +4,6 @@ create table flights (MYEAR INT,QUARTER STRING,MMONTH STRING,DAYOFMONTH STRING,D
 insert into flights select * from (file 'data/flights.csv' header:t);
 insert into carrier_history select * from (file 'data/L_CARRIER_HISTORY.csv' header:t);
 insert into airports select * from (file 'data/GlobalAirportDatabase.txt' delimiter::);
+create table zillow(title STRING, address STRING, city STRING, state STRING, postal_code STRING, price STRING, facts_and_features STRING, real_estate_provider STRING, url STRING);
+insert into zillow as select * from (file 'zillow.csv' header:t);
 

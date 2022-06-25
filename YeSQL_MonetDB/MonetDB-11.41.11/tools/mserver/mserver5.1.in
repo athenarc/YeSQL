@@ -1,0 +1,449 @@
+.\" Process this file with
+.\" groff -man -Tascii foo.1
+.\"
+.TH MSERVER5 1 "APRIL 2011" MonetDB "MonetDB Applications"
+.SH NAME
+mserver5 \- the MonetDB server version 5
+.SH SYNOPSIS
+.B mserver5
+[
+.I options
+]
+.SH DESCRIPTION
+.I Mserver5
+is the current MonetDB server that performs all processing on request
+of clients for a certain database.
+.P
+Note that while
+.I mserver5
+is the process that does the actual work, it is usually more common to
+start, monitor and connect to the
+.I mserver5
+process through
+.IR monetdbd (1).
+.P
+This man-page describes the options that
+.I mserver5
+understands.
+It is intended for people who really need to work with
+.I mserver5
+itself.
+In regular cases, the programs
+.IR monetdbd (1)
+and
+.IR monetdb (1)
+control the many options, and allow to adjust them to appropriate
+values where sensible.
+For normal usage, it is preferred to apply any configuration through
+these programs.
+.SH OPERATION
+When the build-time configuration did not disable this, a
+.I mserver5
+process presents the user with a console prompt.
+On this prompt, MAL commands can be executed.  The architecture is
+setup to handle multiple streams of requests.
+The first thread started represents the server, which is the console
+prompt, reading from standard input and writing to standard output.
+.P
+The server thread started remains in existence until all other threads
+die.
+The server is stopped by sending it a termination signal (SIGINT,
+SIGTERM, SIGQUIT).
+.SH MSERVER5 OPTIONS
+.I Mserver5
+can be started with options as arguments.
+.TP
+\fB\-\-dbpath=\fP\fIpath\fP
+Path where
+.I mserver5
+should find a database.
+Shorthand for option
+.BR gdk_dbpath .
+Default value:
+.BR @CMAKE_INSTALL_FULL_LOCALSTATEDIR@/monetdb5/dbfarm/demo .
+.TP
+\fB\-\-dbextra=\fP\fIpath\fP
+Path where
+.I mserver5
+should store transient data.  Default value is the
+value of the
+.B \-\-dbpath
+option.
+If the value of
+.I path
+is
+.BR in-memory ,
+transient data is not stored on disk at all but kept in memory at all
+times.
+.TP
+\fB\-\-dbtrace=\fP\fIpath\fP
+File name for the trace log file for
+.IR mserver5 .
+Default value is the
+file
+.B mdbtrace.log
+inside the directory specified with the
+.B \-\-dbpath
+option.
+.TP
+\fB\-\-config=\fP\fIfile\fP
+Config file to read options from.
+This file can contain all options as can be set with the
+.B \-\-set
+flag.
+See
+.IR "CONFIG FILE FORMAT" .
+.TP
+.B \-\-single\-user
+Allow only a single user at a time.
+.TP
+.B \-\-readonly
+The database is opened in read-only mode.
+.TP
+\fB\-\-set\fP \fIoption\fP\fB=\fP\fIvalue\fP
+Set individual configuration option.
+For possible options, see
+.I PARAMETERS
+sections.
+.TP
+.B \-\-help
+Print list of options.
+.TP
+.B \-\-version
+Print version and compile configuration.
+.TP
+.B \-\-in\-memory
+Run
+.I mserver5
+in-memory.
+.B No
+data will be written to disk.
+The name of the database that a client can connect to is
+.BR in-memory .
+.TP
+\fB\-\-debug\fP[\fB=\fP\fIvalue\fP]
+.PD 0
+.TP
+\fB\-d\fP[\fIvalue\fP]
+Set debug level.  This is mostly for debugging purposes.
+The value is an integer, which can be (a bit-wise OR of):
+.EX
+          \fB1\fP = THRDMASK     = thread-specific debug output
+          \fB2\fP = CHECKMASK    = property enforcing on new BATs
+          \fB8\fP = PROPMASK     = property checking on all values:
+                             tells about wrongly set properties
+         \fB16\fP = IOMASK       = major IO activity
+         \fB32\fP = BATMASK      = BAT handling
+        \fB128\fP = PARMASK      = Thread management
+        \fB512\fP = TMMASK       = Transaction management
+       \fB1024\fP = TEMMASK      = Locks and Triggers
+       \fB4096\fP = PERFMASK     = BBP Performance (?)
+       \fB8192\fP = DELTAMASK    = Delta debugging (?)
+      \fB16384\fP = LOADMASK     = Module loading
+    \fB1048576\fP = ACCELMASK    = Accelerator debugging
+    \fB2097152\fP = ALGOMASK     = show low level algorithm chosen
+   \fB16777216\fP = NOSYNCMASK   = disable forcefully synchronizing files
+                             to disk.  If this flag is set, there is
+                             no guarantee that the database remains
+                             consistent after a crash.  DO NOT USE
+                             (unless you really don't care about your
+                             data).
+   \fB33554432\fP = DEADBEEFMASK = disable "cleaning" of freed memory
+                             in GDKfree() which only happens in a
+                             debug build (i.e. with assertions
+                             enabled) e.g., for performance
+                             measurements
+   \fB67108864\fP = ALLOCMASK    = exhaustive GDK malloc & free tracing
+                             for debugging (GDK developers, only)
+  \fB134217728\fP = OPTMASK      = trace the actions, decisions and
+                             effects of MAL optimizers
+  \fB268435456\fP = HEAPMASK     = trace/debug HEAPextend;
+                             used only for development & debugging
+  \fB536870912\fP = FORCEMITOMASK = forcefully activate mitosis even on
+                              small tables, i.e., split small tables
+                              in as many (tiny) pieces as there are
+                              cores (threads) available;
+                              this allows us to test mitosis
+                              functionality without requiring large
+                              data sets (\(em at the expense of a
+                              potentially significant interpretation
+                              overhead for unnecessarily large plans);
+                              used only for development & testing;
+                              set automatically by Mtest.py
+.EE
+The
+.I value
+together with the
+.B =
+sign is optional.  If not specified, it defaults to
+.BR 1 .
+In the short form \fB\-d\fP, the value, if present, must immediately
+(i.e. without space) follow the option.
+The values of multiple instances of this flag are OR-ed together.
+.TP
+.B \-\-algorithms
+Equivalent to \fB\-\-debug=\fP\fI(ALGOMASK)\fP.
+.TP
+.B \-\-forcemito
+Equivalent to \fB\-\-debug=\fP\fI(FORCEMITOMASK | NOSYNCMASK)\fP.
+.TP
+.B \-\-heaps
+Equivalent to \fB\-\-debug=\fP\fI(HEAPMASK)\fP.
+.TP
+.B \-\-io
+Equivalent to \fB\-\-debug=\fP\fI(IOMASK | PERFMASK)\fP.
+.TP
+.B \-\-memory
+Equivalent to \fB\-\-debug=\fP\fI(ALLOCMASK)\fP.
+.TP
+.B \-\-modules
+Equivalent to \fB\-\-debug=\fP\fI(LOADMASK)\fP.
+.TP
+.B \-\-performance
+Equivalent to \fB\-\-debug=\fP\fI(DEADBEEFMASK)\fP.
+.TP
+.B \-\-properties
+Equivalent to \fB\-\-debug=\fP\fI(CHECKMASK | PROPMASK | BATMASK)\fP.
+.TP
+.B \-\-threads
+Equivalent to \fB\-\-debug=\fP\fI(THRDMASK | PARMASK)\fP.
+.TP
+.B \-\-transactions
+Equivalent to \fB\-\-debug=\fP\fI(TMMASK | DELTAMASK | TEMMASK)\fP.
+.TP
+.B \-\-read\-password\-initialize\-and\-exit
+Read an unencrypted password from standard input and use it to set the
+password for the
+.B monetdb
+administrator user, initialize the database, and exit.
+If the database was already initialized, the administrator password is
+not changed.
+This option is used by
+.IR monetdbd (1)
+when creating a new database with an administrator password and should
+not be used otherwise.
+.SH MSERVER5 PARAMETERS
+.I Mserver5
+instructs the GDK kernel through the MAL (MonetDB Assembler Language)
+language.
+MonetDB 5 contains an extensive optimiser framework to transform MAL
+plans into more optimal or functional (e.g.  distributed) plans.
+These parameters control behaviour on the MAL level.
+.TP
+.B monet_vault_key
+The authorisation tables inside
+.I mserver5
+can be encrypted with a key, such that reading the BATs does not
+directly disclose any credentials.
+The
+.B monet_vault_key
+setting points to a file that stores a secret key to unlock the
+password vault.
+It can contain anything.
+The file is read up to the first null-byte ('\e0'), hence it can be
+padded to any length with trailing null-bytes to obfuscate the key
+length.
+Generating a key can be done for example by using a tool such as
+.I pwgen
+and adding a few of the passwords generated.
+Make sure not to choose a too small key.
+Note that on absence of a vault key file, some default key is used to
+encrypt the authorisation tables.
+Changing this setting (effectively changing the key) for an existing
+database makes that database unusable as noone is any longer able to
+login.
+If you use
+.IR monetdbd (1),
+a per-database vault key is set.
+.TP
+.B max_clients
+Controls how many client slots are allocated for clients to connect.
+This settings limits the maximum number of connected clients at the
+same time.
+Note that MonetDB is not designed to handle massive amounts of
+connected clients.
+The funnel capability from
+.IR monetdbd (1)
+might be a more suitable solution for such workloads.
+Default
+.BR 64 .
+.TP
+.B mapi_usock
+The name of the UNIX domain socket file on which the server will
+listen for connections.
+If the name contains the substring
+.BR ${PORT} ,
+that part will be replaced by the decimal representation of the TCP/IP
+port (option
+.BR mapi_port ).
+This is especially useful if the port was specified as
+.BR 0 .
+Note, there is usually a severe system-imposed length limitation on
+the name of the file.
+.TP
+.B mapi_port
+The TCP/IP port number on which the server will listen for
+connections.
+This is only used if the value of the
+.B mapi_listenaddr
+option is not equal to
+.BR none .
+Default
+.BR 50000 .
+If the value is
+.BR 0 ,
+the server will use a so called ephemeral port, i.e. one that is
+assigned by the system.
+After successfully starting to listen to a port, the value of the port
+can be retrieved from the file
+.B .conn
+inside the database 
+.RB ( \-\-dbpath )
+directory.
+.TP
+.B mapi_listenaddr
+The TCP/IP interface on which the server will listen for connections.
+Possibilites are:
+.RS
+.TP
+.B localhost
+The server listens only on the IPv4 and IPv6 loopback interface.
+This is the default.
+.TP
+.B 127.0.0.1
+The server listens only on the IPv4 loopback interface.
+.TP
+.B ::1
+The server listens only on the IPv6 loopback interface.
+.TP
+.B all
+The server listens on all IPv4 and IPv6 interfaces.
+.TP
+.B 0.0.0.0
+The server listens on all IPv4 interfaces.
+.TP
+.B ::
+The server listens on all IPv6 interfaces.
+.TP
+.B none
+The server will not listen on any TCP/IP interface (you need to use
+the UNIX domain socket interface).
+.TP
+.I hostname
+The server will listen on the interface designated by
+.I hostname
+which is looked up using the normal hostname lookup facilities.
+.RE
+.SH SQL PARAMETERS
+The SQL component of MonetDB 5 runs on top of the MAL environment.
+It has its own SQL-level specific settings.
+.TP
+.B sql_debug
+Enable debugging using a mask.
+This option should normally be disabled (0).
+Default:
+.BR 0 .
+.TP
+.B sql_optimizer
+The default SQL optimizer pipeline can be set per server.
+See the optpipe setting in
+.IR monetdb (1)
+when using monetdbd.
+During SQL initialization, the optimizer pipeline is checked against
+the dependency information maintained in the optimizer library to
+ensure there are no conflicts and at least the pre-requisite
+optimizers are used.
+The setting of sql_optimizer can be either the list of optimizers to
+run.
+Default:
+.BR default_pipe .
+.RS
+.P
+The following are possible pipes to use:
+.TP
+.B minimal_pipe
+The minimal pipeline necessary by the server to operate correctly.
+.\" this documentation must be kept in sync with the respective code in monetdb5/optimizer/opt_pipes.c
+minimal_pipe=inline,remap,deadcode,multiplex,generator,profiler,candidates,garbageCollector
+.TP
+.B default_pipe
+The default pipeline contains the mitosis-mergetable-reorder
+optimizers, aimed at large tables and improved access locality.
+.\" this documentation must be kept in sync with the respective code in monetdb5/optimizer/opt_pipes.c
+default_pipe=inline,remap,costModel,coercions,aliases,evaluate,emptybind,deadcode,pushselect,aliases,mitosis,mergetable,aliases,constants,commonTerms,projectionpath,deadcode,reorder,matpack,dataflow,querylog,multiplex,generator,profiler,candidates,postfix,deadcode,wlc,garbageCollector
+.TP
+.B no_mitosis_pipe
+The no_mitosis pipeline is identical to the default pipeline, except
+that optimizer mitosis is omitted.
+It is used mainly to make some tests work deterministically, and to
+check/debug whether "unexpected" problems are related to mitosis
+(and/or mergetable).
+.\" this documentation must be kept in sync with the respective code in monetdb5/optimizer/opt_pipes.c
+no_mitosis_pipe=inline,remap,costModel,coercions,aliases,evaluate,emptybind,deadcode,pushselect,aliases,mergetable,aliases,constants,commonTerms,projectionpath,deadcode,reorder,matpack,dataflow,querylog,multiplex,generator,profiler,candidates,postfix,deadcode,wlc,garbageCollector
+.TP
+.B sequential_pipe
+The sequential pipeline is identical to the default pipeline, except
+that optimizers mitosis & dataflow are omitted.
+It is use mainly to make some tests work deterministically, i.e.,
+avoid ambigious output, by avoiding parallelism.
+.\" this documentation must be kept in sync with the respective code in monetdb5/optimizer/opt_pipes.c
+sequential_pipe=inline,remap,costModel,coercions,aliases,evaluate,emptybind,deadcode,pushselect,aliases,mergetable,aliases,constants,commonTerms,projectionpath,deadcode,reorder,matpack,querylog,multiplex,generator,profiler,candidates,postfix,deadcode,wlc,garbageCollector
+.RE
+.TP
+.B embedded_py
+Enable embedded Python.  This means Python code can be called from
+SQL.
+The value is
+.B true
+or
+.B 3
+for embedded Python 3.  Note that by enabling embedded Python, users
+of the server are allowed to execute arbitrary Python code, and are
+therefore able to read and modify all data that the server process has
+access to.
+.TP
+.B embedded_r=true
+Enable embedded R.  This means R code can be called from SQL.  Note
+that by enabling embedded R, users of the server are allowed to
+execute arbitrary R code, and are therefore able to read and modify
+all data that the server process has access to.
+.TP
+.B embedded_c=true
+Enable embedded C.  This means C code can be called from SQL.  The C
+code will first be compiled and then executed.  This means a C
+compiler must be available.  Note also that by enabling embedded C,
+users of the server are allowed to execute arbitrary C code, and are
+therefore able to read and modify all data that the server process has
+access to.  In addition, if the C code causes a crash, all bets are
+off.
+.TP
+.B raw_strings=true
+The boolean option raw_strings controls how the sql scanner interprets string
+literals. If the value is
+.B false
+then strings are interpreted as if they were delimited with E-quotes, that is
+strings are interpreted as C strings and backslash characters are needed to
+escape special characters. If the value is
+.B true
+then strings are interpreted as if they were delimited with R-quotes, that is
+all characters are interpreted literally. Single quote characters need to be
+doubled inside strings. The default value is
+.BR false .
+.SH CONFIG FILE FORMAT
+The configuration file readable by
+.I mserver5
+consists of parameters of the form \(dq\&\fIname\fP=\fIvalue\fP\(dq\&.
+The file is line-based, each newline-terminated line represents either
+a comment or a parameter.
+Only the first equals sign in a parameter is significant.
+Whitespace before or after the first equals sign is not stripped.
+Trailing whitespace in a parameter value is retained verbatim.
+Any line beginning with a hash
+.RB ( # )
+is ignored, as are lines containing only whitespace.
+The values following the equals sign in parameters are all a string
+where quotes are not needed, and if written be part of the string.
+.SH SEE ALSO
+.IR monetdbd (1),
+.IR monetdb (1),
+.IR mclient (1)

@@ -30,7 +30,7 @@ This script contains the list of commands to install monetdb and other python an
 
 ### Experiment
 
-run flights experiment with 
+run end-to-end experiments with 
 
 ```
 python3 YeSQL_MonetDB/monetdb.py -d fldb -H localhost -P 50000 -u monetdb -p monetdb
@@ -40,7 +40,7 @@ Paste query at `sql_queries/flights.sql` in the terminal.
 Paste query at `sql_queries/zillow.sql` in the terminal.
 
 The terminal also executes any other queries using the MonetDB's SQL dialect. 
-Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` and `udfs/zillow.py` in isolation to run microbenchmarks.
+Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` and `udfs/zillow.py` in isolation to run microbenchmarks with YeSQL's implementation on MonetDB.
 Also, the user can disable default monetdb's multithreading with `set optimizer='sequential_pipe';` in the terminal.
 This is a specific monetdb command. 
 
@@ -59,11 +59,11 @@ Paste query at `sql_queries/flights_sqlite.sql` in the terminal.
 Paste query at `sql_queries/zillow_sqlite.sql` in the terminal.
 
 The terminal also executes any other queries using the SQLite's SQL dialect.
-Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` and `udfs/zillow.py` in isolation to run microbenchmarks.
+Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` and `udfs/zillow.py` in isolation to run microbenchmarks with YeSQL's implementation on SQLite.
 
 ## Notes
 
-The repository contains the datasets and udfs for zillow and flights experiments (end-to-end and microbenchmarks with single udfs executions). 
+The repository contains the datasets and udfs for zillow and flights experiments (end-to-end and with microbenchmarks using single udfs executions). 
 A  `flights.csv` file and a `zillow.csv` file is available at `data` folder.
 
 Synthetic creation of larger tables of any size can be done with queries like `insert into flights select * from flights;`

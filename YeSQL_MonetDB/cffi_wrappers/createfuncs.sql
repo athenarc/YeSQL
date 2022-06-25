@@ -159,7 +159,6 @@ extractba_wrapped(input.data, input.count, result->data);
 };
 
 
-drop function extractsqfeet;
 CREATE or replace FUNCTION extractsqfeet(input STRING)
 RETURNS INT
 LANGUAGE C {

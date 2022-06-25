@@ -27,4 +27,5 @@ cd $CURRENT
 ./monetdb_release/bin/mclient -p 50000 -d fldb -s "COPY INTO AIRPORTS from '$PWD/data/GlobalAirportDatabase.txt' USING DELIMITERS ':', '\n','\"'"
 ./monetdb_release/bin/mclient -p 50000 -d fldb -s "COPY INTO flights_temp from '$PWD/data/flights.csv' USING DELIMITERS ',', '\n','\"'"
 ./monetdb_release/bin/mclient -p 50000 -d fldb < data/loadflights.sql
-./monetdb_release/bin/mclient -p 50000 -d fldb -s "delete from carrier_history where code = 'Code';"
+./monetdb_release/bin/mclient -p 50000 -d fldb -s "COPY INTO zillow from '$PWD/data/zillow.csv' USING DELIMITERS ',', E'\n', '\"';" 
+

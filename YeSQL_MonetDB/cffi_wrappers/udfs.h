@@ -14,4 +14,5 @@ extern int extractpcode_wrapped(char** input, int size, char** result);
 extern int extractba_wrapped(char** input, int size, int* result);
 extern int extractsqfeet_wrapped(char** input, int size, int* result);
 extern int extractprice_sell_wrapped(char** input, int size, int* result);
+extern int avg_word_len_wrapped(char** input, int size, double* result);
 

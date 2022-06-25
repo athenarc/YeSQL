@@ -47,12 +47,12 @@ This is a specific monetdb command.
 
 Load the data with
 ```
-pypy2.7-v7.3.6-linux64/bin/pypy YeSQLite/mterm.py -f udfs -d flights.db  < data/loadflights_sqlite.sql
+pypy2.7-v7.3.6-linux64/bin/pypy YeSQLite/mterm.py -f udfs -d data.db  < data/loaddata_sqlite.sql
 ```
 
 run flights experiment with
 ```
-pypy2.7-v7.3.6-linux64/bin/pypy YeSQLite/mterm.py -f udfs -d flights.db
+pypy2.7-v7.3.6-linux64/bin/pypy YeSQLite/mterm.py -f udfs -d data.db
 ```
 Paste query at `sql_queries/flights_sqlite.sql` in the terminal.
 
@@ -61,17 +61,17 @@ Thus, the user of this terminal can also run the udfs defined at `udfs/flights.p
 
 ## Notes
 
-The current version of the repository contains the zillow and flights datasets. 
-A smaller `flights.csv` file and a smaller `zillow.csv` file is available at `data` folder.
+The repository contains the datasets and udfs for zillow and flights experiments (end-to-end and microbenchmarks with single udfs executions). 
+A  `flights.csv` file and a `zillow.csv` file is available at `data` folder.
 
-Synthetic creation of larger tables can be easily done with a query like `insert into flights select * from flights;`
-The exact bigger versions of the csvs will be also available soon.
+Synthetic creation of larger tables of any size can be done with queries like `insert into flights select * from flights;`
 
 The repository also includes the whole implementation of YeSQL on top of SQLite (i.e., the user is able to implement new UDFs in the udfs folder as .py files), and a prototype implementation of YeSQL on top of MonetDB (i.e., implementation of new UDFs is not supported in this prototype, however the user may edit the body of already existing UDFs)
 
 For comparisons with `tuplex` and `pyspark` we used the implementations available at 
 https://github.com/tuplex/tuplex/tree/master/benchmarks/flights (python files `runpyspark.py` and `runtuplex.py`)
+and
+https://github.com/tuplex/tuplex/tree/master/benchmarks/zillow/Z2 (python files `runpyspark.py` and `runtuplex.py`)
 
 Instruction to install tuplex and run these scripts are available at https://github.com/tuplex/tuplex
 
-Instructions to reproduce more experiments (e.g., zillow, microbenchmarks etc.) will be submitted soon in the current repository.

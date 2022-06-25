@@ -40,11 +40,12 @@ run end-to-end experiments with
 
 Paste query at `sql_queries/flights.sql` in the terminal.
 Paste query at `sql_queries/zillow.sql` in the terminal.
+ 
+It is possible also to run the udfs defined at `udfs/flights.py` and `udfs/zillow.py` in isolation to run microbenchmarks with YeSQL's implementation on MonetDB.
+The user can disable default monetdb's multithreading with `set optimizer='sequential_pipe';` in the terminal and run single threaded experiments. 
+Also the number of threads can be defined as shown at https://www.monetdb.org/documentation-Jan2022/admin-guide/manpages/monetdb/ with nthreads property.
+This is necessary to run the scalability experiments.
 
-The terminal also executes any other queries using the MonetDB's SQL dialect. 
-Thus, the user of this terminal can also run the udfs defined at `udfs/flights.py` and `udfs/zillow.py` in isolation to run microbenchmarks with YeSQL's implementation on MonetDB.
-Also, the user can disable default monetdb's multithreading with `set optimizer='sequential_pipe';` in the terminal.
-This is a specific monetdb command. 
 
 Note also that with:
 ```

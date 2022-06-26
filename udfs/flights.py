@@ -28,6 +28,8 @@ def getstate_py(x):
     return x[x.rfind(',')+1:]
 getstate_py.registered = True
 
+def toint(val):
+    return int(float(val)) if val else 0
 
 def getairlineyear(arg):
     try:

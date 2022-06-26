@@ -9,6 +9,16 @@ LANGUAGE C
     getairlinename_wrapped(input.data, input.count,result->data);
 };
 
+CREATE or replace FUNCTION toint(log string)
+RETURNS INT
+LANGUAGE C
+{
+    #pragma CFLAGS -I$CURRENT/YeSQL_MonetDB/cffi_wrappers
+    #pragma LDFLAGS -L$CURRENT/YeSQL_MonetDB/cffi_wrappers -lwrappedudfs
+    #include "udfs.h"
+    result->initialize(result, log.count);
+    toint_wrapped(log.data,log.count,result->data);
+};
 
 CREATE or replace FUNCTION getcity(input string)
 RETURNS string

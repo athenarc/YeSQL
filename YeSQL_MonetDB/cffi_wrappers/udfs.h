@@ -7,6 +7,7 @@ extern int getcity_wrapped(char** input, int size, char** result);
 extern int getstate_wrapped(char** input, int size, char** result);
 extern int getcity_py_wrapped(char** input, int size, char** result);
 extern int getstate_py_wrapped(char** input, int size, char** result);
+extern int toint_wrapped(char** input, int size, int* result);
 extern int defunctyear_wrapped(char** input, int size, int* result);
 extern int getairlinename_wrapped(char** input, int size, char** result);
 extern int getairlineyear_wrapped(char** input, int size, int* result);

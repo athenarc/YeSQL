@@ -21,6 +21,16 @@ LANGUAGE C
     getcity_wrapped(input.data, input.count,result->data);
 };
 
+CREATE or replace FUNCTION getcity_py(input string)
+RETURNS string
+LANGUAGE C
+{
+    #pragma CFLAGS -I$CURRENT/YeSQL_MonetDB/cffi_wrappers
+    #pragma LDFLAGS -L$CURRENT/YeSQL_MonetDB/cffi_wrappers -lwrappedudfs
+    #include "udfs.h"
+    result->initialize(result, input.count);
+    getcity_py_wrapped(input.data, input.count,result->data);
+};
 
 CREATE or replace FUNCTION getstate(input string)
 RETURNS string
@@ -31,6 +41,17 @@ LANGUAGE C
     #include "udfs.h"
     result->initialize(result, input.count);
     getstate_wrapped(input.data, input.count,result->data);
+};
+
+CREATE or replace FUNCTION getstate_py(input string)
+RETURNS string
+LANGUAGE C
+{
+    #pragma CFLAGS -I$CURRENT/YeSQL_MonetDB/cffi_wrappers
+    #pragma LDFLAGS -L$CURRENT/YeSQL_MonetDB/cffi_wrappers -lwrappedudfs
+    #include "udfs.h"
+    result->initialize(result, input.count);
+    getstate_py_wrapped(input.data, input.count,result->data);
 };
 
 CREATE or replace FUNCTION getairlineyear(input string)

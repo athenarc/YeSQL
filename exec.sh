@@ -15,7 +15,7 @@ cmake --build .
 cmake --build . --target install
 cd $CURRENT
 ./monetdb_release/bin/monetdbd create flights
-./monetdb_release/bin/monetdbd set port=50090 flights
+./monetdb_release/bin/monetdbd set port=50000 flights
 ./monetdb_release/bin/monetdbd start flights
 ./monetdb_release/bin/monetdb -p 50000 create fldb
 ./monetdb_release/bin/monetdb -p 50000 set embedc=true fldb

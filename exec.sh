@@ -17,15 +17,15 @@ cd $CURRENT
 ./monetdb_release/bin/monetdbd create flights
 ./monetdb_release/bin/monetdbd set port=50090 flights
 ./monetdb_release/bin/monetdbd start flights
-./monetdb_release/bin/monetdb -p 50090 create fldb
-./monetdb_release/bin/monetdb -p 50090 set embedc=true fldb
-./monetdb_release/bin/monetdb -p 50090 release fldb
-./monetdb_release/bin/monetdb -p 50090 start fldb
-./monetdb_release/bin/mclient -p 50090 -d fldb -t performance < YeSQL_MonetDB/cffi_wrappers/createfuncs.sql
-./monetdb_release/bin/mclient -p 50090 -d fldb -t performance < data/loadschema.sql
-./monetdb_release/bin/mclient -p 50090 -d fldb -s "COPY INTO carrier_history from '$PWD/data/L_CARRIER_HISTORY.csv' USING DELIMITERS ',', '\n','\"'"
-./monetdb_release/bin/mclient -p 50090 -d fldb -s "COPY INTO AIRPORTS from '$PWD/data/GlobalAirportDatabase.txt' USING DELIMITERS ':', '\n','\"'"
-./monetdb_release/bin/mclient -p 50090 -d fldb -s "COPY INTO flights_temp from '$PWD/data/flights.csv' USING DELIMITERS ',', '\n','\"'"
-./monetdb_release/bin/mclient -p 50090 -d fldb < data/loadflights.sql
-./monetdb_release/bin/mclient -p 50090 -d fldb -s "COPY INTO zillow from '$PWD/data/zillow.csv' USING DELIMITERS ',', E'\n', '\"';" 
+./monetdb_release/bin/monetdb -p 50000 create fldb
+./monetdb_release/bin/monetdb -p 50000 set embedc=true fldb
+./monetdb_release/bin/monetdb -p 50000 release fldb
+./monetdb_release/bin/monetdb -p 50000 start fldb
+./monetdb_release/bin/mclient -p 50000 -d fldb -t performance < YeSQL_MonetDB/cffi_wrappers/createfuncs.sql
+./monetdb_release/bin/mclient -p 50000 -d fldb -t performance < data/loadschema.sql
+./monetdb_release/bin/mclient -p 50000 -d fldb -s "COPY INTO carrier_history from '$PWD/data/L_CARRIER_HISTORY.csv' USING DELIMITERS ',', '\n','\"'"
+./monetdb_release/bin/mclient -p 50000 -d fldb -s "COPY INTO AIRPORTS from '$PWD/data/GlobalAirportDatabase.txt' USING DELIMITERS ':', '\n','\"'"
+./monetdb_release/bin/mclient -p 50000 -d fldb -s "COPY INTO flights_temp from '$PWD/data/flights.csv' USING DELIMITERS ',', '\n','\"'"
+./monetdb_release/bin/mclient -p 50000 -d fldb < data/loadflights.sql
+./monetdb_release/bin/mclient -p 50000 -d fldb -s "COPY INTO zillow from '$PWD/data/zillow.csv' USING DELIMITERS ',', E'\n', '\"';" 
 
